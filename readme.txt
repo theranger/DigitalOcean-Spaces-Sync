@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -32,6 +32,10 @@ P.S. Basically it works with all AWS S3 compatible cloud storages.
 1. Configuration screen
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed filemasks, now using regex.
+* Added ability to rewrite attachment url for filtered files returning original url, this thing may be buggy, so waiting for reports.
 
 = 1.0.8 =
 * Renamed the plugin.
