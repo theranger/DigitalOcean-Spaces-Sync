@@ -197,7 +197,7 @@
           
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
             <label for="dos_key">
-              <?php _e('Filemask', 'dos'); ?>:
+              <?php _e('Filemask/Regex for ignored files', 'dos'); ?>:
             </label>
           </div>
 
@@ -205,9 +205,9 @@
             <input id="dos_filter" name="dos_filter" type="text"
                    value="<?php echo esc_attr(get_option('dos_filter')); ?>" class="regular-text code"/>
             <div class="dos__description">
-              <?php _e('By default', 'dos'); ?>:<code>*</code>
-              <?php _e('for all files, 2 or more values separated by a comma (for example: ', 'dos'); ?>
-              <code>*.jpg,*.png,n?ame.png</code>)
+              <?php _e('By default empty or', 'dos'); ?><code>*</code>
+              <?php _e('Will upload all the files by default, you are free to use any Regular Expression to match and ignore the selection you need, for example:', 'dos'); ?>
+              <code>/^.*\.(zip|rar|docx)$/i</code>
             </div>
           </div>
 

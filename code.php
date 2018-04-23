@@ -9,7 +9,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPA
 /**
  * Creates settings page and sets default options
  */
-function dos_settings_page() {
+function dos_settings_page () {
 
   // Default settings
   if ( get_option('upload_path') == 'wp-content' . DIRECTORY_SEPARATOR . 'uploads' || get_option('upload_path') == null  ) {
@@ -21,7 +21,7 @@ function dos_settings_page() {
   }
 
   if ( get_option('dos_filter') == null ) {
-    update_option('dos_filter', '*');
+    update_option('dos_filter', '');
   }
 
   if ( get_option('dos_storage_path') == null ) {
@@ -35,7 +35,7 @@ function dos_settings_page() {
 /**
  * Adds menu item for plugin
  */
-function dos_create_menu(){
+function dos_create_menu (){
 
   add_options_page(
     'DigitalOcean Spaces Sync',
@@ -53,7 +53,7 @@ function dos_create_menu(){
  * @param  boolean $test
  * @return instance
  */
-function __DOS( $test = false ) {
+function __DOS ($test = false) {
 
   if ( $test ) {
 
@@ -115,7 +115,7 @@ function __DOS( $test = false ) {
  * @param string $message
  * @param bool $errormsg = false
  */
-function dos_show_message( $message, $errormsg = false ) {
+function dos_show_message ($message, $errormsg = false) {
 
   if ($errormsg) {
 
@@ -134,7 +134,7 @@ function dos_show_message( $message, $errormsg = false ) {
 /**
  * Tests connection to container
  */
-function dos_test_connection() {
+function dos_test_connection () {
 
   try {
     
@@ -160,7 +160,7 @@ function dos_test_connection() {
  * @param string $file Full url path. Example /var/www/example.com/wm-content/uploads/2015/05/simple.jpg
  * @return string Short path. Example 2015/05/simple.jpg
  */
-function dos_filepath( $file ) {
+function dos_filepath ($file) {
 
   $dir = get_option('upload_path');
   $file = str_replace($dir, '', $file);
@@ -179,7 +179,7 @@ function dos_filepath( $file ) {
  * @param mixed $data
  * @return string
  */
-function dos_dump( $data ) {
+function dos_dump ($data) {
 
   ob_start();
   print_r($data);
@@ -198,10 +198,16 @@ function dos_dump( $data ) {
  * @param  bool *Delete the file from the server after unloading
  * @return bool Successful load returns true, false otherwise
  */
-function dos_file_upload( $pathToFile, $attempt = 0, $del = false ) {
+function dos_file_upload ($pathToFile, $attempt = 0, $del = false) {
 
   // init cloud filesystem
   $filesystem = __DOS();
+  $regex = get_option('dos_filter');
+
+  // prepare regex
+  if ( $regex == '*' ) {
+    $regex = '';
+  }
 
   if (get_option('dos_debug') == 1) {
 
@@ -233,7 +239,8 @@ function dos_file_upload( $pathToFile, $attempt = 0, $del = false ) {
       }
     }
 
-    if ( is_readable($pathToFile) ) {
+    // check if readable and regex matched
+    if ( is_readable($pathToFile) && !preg_match( $regex, $pathToFile) ) {
 
       $filesystem->put( dos_filepath($pathToFile), file_get_contents($pathToFile), [
         'visibility' => AdapterInterface::VISIBILITY_PUBLIC
@@ -274,7 +281,7 @@ function dos_file_upload( $pathToFile, $attempt = 0, $del = false ) {
  * @param  string $file Absolute path to file
  * @param  integer $attempt Number of attempts to upload the file
  */
-function dos_file_delete( $file, $attempt = 0 ) {
+function dos_file_delete ($file, $attempt = 0) {
 
   if (file_exists($file)) {
 
@@ -309,7 +316,7 @@ function dos_file_delete( $file, $attempt = 0 ) {
  * @param int $postID Id upload file
  * @return bool
  */
-function dos_storage_upload( $postID ) {
+function dos_storage_upload ($postID) {
 
   if ( wp_attachment_is_image($postID) == false ) {
 
@@ -346,7 +353,7 @@ function dos_storage_upload( $postID ) {
  * @param string $file Full path to file
  * @return string
  */
-function dos_storage_delete( $file ) {
+function dos_storage_delete ($file) {
 
   try {
 
@@ -379,7 +386,7 @@ function dos_storage_delete( $file ) {
  * @param array $metadata
  * @return array Returns $metadata array without changes
  */
-function dos_thumbnail_upload( $metadata ) {
+function dos_thumbnail_upload ($metadata) {
 
   $paths = array();
   $upload_dir = wp_upload_dir();
@@ -458,12 +465,38 @@ function dos_thumbnail_upload( $metadata ) {
 }
 
 /**
+ * Rewrites wp_attachment_url if file matches regex/filter
+ * @param string $url
+ * @return string $url
+ */
+function dos_attachment_url ($url) {
+
+  $http = site_url();
+  $upload_url = get_option('upload_url_path');
+  $upload_path = get_option('upload_path');
+  $home_path = get_home_path();
+  $regex = get_option('dos_filter');
+
+  // prepare regex
+  if ( $regex == '*' ) {
+    $regex = '';
+  }
+
+  if ( preg_match( $regex, $url) ) {
+    return $http . '/' . str_replace($home_path, '', $upload_path) . str_replace($upload_url, '', $url);
+  } else {
+    return $url;
+  }
+
+}
+
+/**
  * @param string $pattern
  * @param int $flags = 0
  *
  * @return array|false
  */
-function dos_glob_recursive( $pattern, $flags = 0 ) {
+function dos_glob_recursive ($pattern, $flags = 0) {
 
   $files = glob($pattern, $flags);
   foreach (glob(dirname($pattern) . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
@@ -480,7 +513,7 @@ function dos_glob_recursive( $pattern, $flags = 0 ) {
  * @param array $haystack
  * @return bool
  */
-function dos_in_array( $needle, $haystack ) {
+function dos_in_array ($needle, $haystack) {
 
   $flipped_haystack = array_flip($haystack);
   if (isset($flipped_haystack[$needle])) {
@@ -496,7 +529,7 @@ function dos_in_array( $needle, $haystack ) {
  * @param string @path Full path to file
  * @return bool
  */
-function dos_check_for_sync( $path ) {
+function dos_check_for_sync ($path) {
 
   get_option('dos_filter') != '' ?
     $mask = trim(get_option('dos_filter')) :

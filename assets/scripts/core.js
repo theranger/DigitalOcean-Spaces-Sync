@@ -8,7 +8,7 @@ jQuery( function () {
   // check connection button
   dos_test_connection.on( 'click', function () {
 
-    console.log( 'Testing connection to DO Spaces Container' )
+    console.log( 'Testing connection to DigitalOcean Spaces Container' )
 
     const data = {
       dos_key: jQuery('input[name=dos_key]').val(),
