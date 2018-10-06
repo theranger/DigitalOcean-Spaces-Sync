@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.1.0
+Stable tag: 2.0.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -18,7 +18,20 @@ from DigitalOcean Spaces.
 
 In order to use this plugin, you have to create a DigitalOcean Spaces API key.
 
-P.S. Basically it works with all AWS S3 compatible cloud storages.
+You may now define constants in order to configure the plugin. If the constant is defined, it overwrites the value from settings page.
+Contants description:
+- DOS_KEY - DigitalOcean Spaces key
+- DOS_SECRET - DigitalOcean Spaces secret,
+- DOS_ENDPOINT - DigitalOcean Spaces endpoint,
+- DOS_CONTAINER - DigitalOcean Spaces container,
+- DOS_STORAGE_PATH - The path to the file in the storage, will appear as a prefix,
+- DOS_STORAGE_FILE_ONLY - Keep files only in DigitalOcean Spaces or not, values (true|false),
+- DOS_STORAGE_FILE_DELETE - Remove files in DigitalOcean Spaces on delete or not, values (true|false),
+- DOS_FILTER - A Regex filter,
+- UPLOAD_URL_PATH - A full url to the files, WP Constant,
+- UPLOAD_PATH - A path to the local files, WP Constant
+
+There is a known issue with the built in Wordpress Image Editor, it will not upload changed images. Know how to fix this, PR welcome.
 
 == Installation ==
 
@@ -32,6 +45,18 @@ P.S. Basically it works with all AWS S3 compatible cloud storages.
 1. Configuration screen
 
 == Changelog ==
+
+= 2.0.1 =
+* Rewrote the plugin.
+* Removed useless code.
+* Fixed unique filename problem.
+* Added constants that may be defined.
+
+= 1.1.1 =
+* Removed attachment url rewrite, it was not consistent.
+
+= 1.1.0.2 =
+* Had to push version up in order svn to catchup with updates.
 
 = 1.1.0 =
 * Fixed filemasks, now using regex.
