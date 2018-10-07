@@ -311,7 +311,7 @@ class DOS {
 
     $path = str_replace($basedir, '', $file);
   
-    return $path;
+    return $this->storage_path . $path;
 
   }
 
