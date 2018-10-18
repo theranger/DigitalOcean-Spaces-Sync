@@ -46,6 +46,13 @@ There is a known issue with the built in Wordpress Image Editor, it will not upl
 
 == Changelog ==
 
+= 2.0.3 =
+* Fixed attachment save on image edit
+* It may now work with image optimization plugins, if not, report
+
+= 2.0.2.1 =
+* Hotfix, thanks WP SVN, start using Git finally.
+
 = 2.0.1 =
 * Rewrote the plugin.
 * Removed useless code.
