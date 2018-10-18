@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.1
+Stable tag: 2.0.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
