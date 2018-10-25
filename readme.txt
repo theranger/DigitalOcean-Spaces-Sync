@@ -48,6 +48,7 @@ There is a known issue with the built in Wordpress Image Editor, it will not upl
 
 = 2.0.4 =
 * Fixed file_path for multisite setup
+* Fix preg_match() Warning if Filemask/Regex in DOS setting is empty
 
 = 2.0.3 =
 * Fixed attachment save on image edit
