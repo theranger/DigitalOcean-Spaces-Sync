@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -45,6 +45,9 @@ There is a known issue with the built in Wordpress Image Editor, it will not upl
 1. Configuration screen
 
 == Changelog ==
+
+= 2.0.4 =
+* Fixed file_path for multisite setup
 
 = 2.0.3 =
 * Fixed attachment save on image edit
