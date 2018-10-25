@@ -319,7 +319,7 @@ class DOS {
     $regex_string = $this->filter;
 
     // prepare regex
-    if ( $regex_string == '*' ) {
+    if ( $regex_string == '*' || !strlen($regex_string)) {
       $regex = false;
     } else {
       $regex = preg_match( $regex_string, $file);
