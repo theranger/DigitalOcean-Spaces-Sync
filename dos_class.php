@@ -306,10 +306,7 @@ class DOS {
   // FILE METHODS
   public function file_path ($file) {
 
-    $upload_dir = wp_upload_dir();
-    $basedir = $upload_dir['basedir'];
-
-    $path = str_replace($basedir, '', $file);
+    $path = str_replace($this->upload_path, '', $file);
   
     return $this->storage_path . $path;
 

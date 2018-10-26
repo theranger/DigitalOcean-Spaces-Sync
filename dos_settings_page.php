@@ -111,7 +111,7 @@
         <div class="row">
           
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
-            <input type="button" name="test" id="submit" class="button button-primary dos__test__connection"
+            <input type="button" name="test" class="button button-primary dos__test__connection"
                    value="<?php _e('Check the connection', 'dos'); ?>" />
           </div>
 
