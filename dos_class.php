@@ -23,8 +23,8 @@ class DOS {
 			self::$instance = new DOS(
 				defined( 'DOS_KEY' ) ? DOS_KEY : null,
 				defined( 'DOS_SECRET' ) ? DOS_SECRET : null,
-        defined( 'DOS_ENDPOINT' ) ? DOS_ENDPOINT : null,
         defined( 'DOS_CONTAINER' ) ? DOS_CONTAINER : null,
+        defined( 'DOS_ENDPOINT' ) ? DOS_ENDPOINT : null,
         defined( 'DOS_STORAGE_PATH' ) ? DOS_STORAGE_PATH : null,
         defined( 'DOS_STORAGE_FILE_ONLY' ) ? DOS_STORAGE_FILE_ONLY : null,
         defined( 'DOS_STORAGE_FILE_DELETE' ) ? DOS_STORAGE_FILE_DELETE : null,
@@ -37,16 +37,16 @@ class DOS {
   }
   
 	public function __construct( $key, $secret, $container, $endpoint, $storage_path, $storage_file_only, $storage_file_delete, $filter, $upload_url_path, $upload_path ) {
-		$this->key                 = empty($key) ? get_option('dos_key') : null;
-		$this->secret              = empty($secret) ? get_option('dos_secret') : null;
-    $this->endpoint            = empty($endpoint) ? get_option('dos_endpoint') : null;
-    $this->container           = empty($container) ? get_option('dos_container') : null;
-    $this->storage_path        = empty($storage_path) ? get_option('dos_storage_path') : null;
-    $this->storage_file_only   = empty($storage_file_only) ? get_option('dos_storage_file_only') : null;
-    $this->storage_file_delete = empty($storage_file_delete) ? get_option('dos_storage_file_delete') : null;
-    $this->filter              = empty($filter) ? get_option('dos_filter') : null;
-    $this->upload_url_path     = empty($upload_url_path) ? get_option('upload_url_path') : null;
-    $this->upload_path         = empty($upload_path) ? get_option('upload_path') : null;
+		$this->key                 = empty($key) ? get_option('dos_key') : $key;
+		$this->secret              = empty($secret) ? get_option('dos_secret') : $secret;
+    $this->endpoint            = empty($endpoint) ? get_option('dos_endpoint') : $endpoint;
+    $this->container           = empty($container) ? get_option('dos_container') : $container;
+    $this->storage_path        = empty($storage_path) ? get_option('dos_storage_path') : $storage_path;
+    $this->storage_file_only   = empty($storage_file_only) ? get_option('dos_storage_file_only') : $storage_file_only;
+    $this->storage_file_delete = empty($storage_file_delete) ? get_option('dos_storage_file_delete') : $storage_file_delete;
+    $this->filter              = empty($filter) ? get_option('dos_filter') : $filter;
+    $this->upload_url_path     = empty($upload_url_path) ? get_option('upload_url_path') : $upload_url_path;
+    $this->upload_path         = empty($upload_path) ? get_option('upload_path') : $upload_path;
 	}
 
   // SETUP
@@ -267,6 +267,8 @@ class DOS {
 
   // METHODS
   public function test_connection () {
+
+    error_log( print_r( $this, true) );
 
     try {
     
