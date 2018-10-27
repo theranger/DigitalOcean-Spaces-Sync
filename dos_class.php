@@ -268,8 +268,6 @@ class DOS {
   // METHODS
   public function test_connection () {
 
-    error_log( print_r( $this, true) );
-
     try {
     
       $filesystem = DOS_Filesystem::get_instance($this->key, $this->secret, $this->container, $this->endpoint);
