@@ -3,8 +3,8 @@ Contributors: keeross
 Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
-Tested up to: 4.9
-Stable tag: 2.0.5
+Tested up to: 5.2.2
+Stable tag: 2.0.10
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -45,6 +45,10 @@ There is a known issue with the built in Wordpress Image Editor, it will not upl
 1. Configuration screen
 
 == Changelog ==
+
+= 2.0.10 =
+* Fix empty upload path cause create server real path in DO Space (https://github.com/keeross/DigitalOcean-Spaces-Sync/pull/15)
+* Fix PHP Deprecated warning (https://github.com/keeross/DigitalOcean-Spaces-Sync/pull/20)
 
 = 2.0.5 =
 * Fixed issue with constant initialization
