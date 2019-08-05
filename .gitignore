@@ -1,5 +1,3 @@
 
 .vscode
-vendor
 logs/**.txt
-sftp-config.json
