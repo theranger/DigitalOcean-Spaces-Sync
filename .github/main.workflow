@@ -12,7 +12,11 @@ action "tag" {
 action "WordPress Plugin Deploy" {
   needs = ["tag"]
   uses = "10up/actions-wordpress/dotorg-plugin-deploy@master"
-  secrets = ["SVN_USERNAME", "SVN_PASSWORD", "GITHUB_TOKEN"]
+  secrets = [
+    "GITHUB_TOKEN",
+    "SVN_PASSWORD",
+    "SVN_USERNAME",
+  ]
   env = {
     SLUG = "do-spaces-sync"
   }
