@@ -228,7 +228,10 @@ class DOS {
       if ( isset($metadata['file']) ) {
 
         $path = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
-        array_push($paths, $path);
+
+        if ( ! in_array($path, $paths) )
+          array_push($paths, $path);
+        }
 
         // set basepath for other sizes
         $file_info = pathinfo($path);
