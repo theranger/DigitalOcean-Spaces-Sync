@@ -183,10 +183,11 @@ class DOS {
     $number = 1;
     $new_filename = $filename;
     $fileparts = pathinfo($filename);
-
-    while ( $filesystem->has( $subdir . "/$new_filename" ) ) {
+    $cdnPath = rtrim($this->storage_path,'/') . '/' . ltrim($subdir,'/') . '/' . $new_filename;
+    while ( $filesystem->has( $cdnPath ) ) {
       $new_filename = $fileparts['filename'] . "-$number." . $fileparts['extension'];
       $number = (int) $number + 1;
+      $cdnPath = rtrim($this->storage_path,'/') . '/' . ltrim($subdir,'/') . '/' . $new_filename;
     }
 
     return $new_filename;
@@ -267,7 +268,15 @@ class DOS {
 
   // METHODS
   public function test_connection () {
-
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $postData = $_POST;
+        $keys = ['key' => 'dos_key','secret' => 'dos_secret','endpoint' => 'dos_endpoint','container' => 'dos_container'];
+        foreach ($keys as $prop => $key) {
+            if(isset($postData[$key])){
+                $this->$prop = $postData[$key];
+            }
+        }
+    }
     try {
     
       $filesystem = DOS_Filesystem::get_instance($this->key, $this->secret, $this->container, $this->endpoint);
