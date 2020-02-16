@@ -3,7 +3,7 @@
  * Plugin Name: DigitalOcean Spaces Sync
  * Plugin URI: https://github.com/keeross/DO-Spaces-Wordpress-Sync
  * Description: This WordPress plugin syncs your media library with DigitalOcean Spaces Container.
- * Version: 2.2.0
+ * Version: 2.2.1
  * Author: keeross
  * Author URI: https://github.com/keeross
  * License: MIT

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/keeross
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -45,6 +45,9 @@ There is a known issue with the built in Wordpress Image Editor, it will not upl
 1. Configuration screen
 
 == Changelog ==
+
+= 2.2.1 =
+* Changed "upload done" hook to improve performance (https://github.com/keeross/DigitalOcean-Spaces-Sync/issues/34)
 
 = 2.2.0 =
 * Fix Test Connection ignore post data (https://github.com/keeross/DigitalOcean-Spaces-Sync/pull/27)
