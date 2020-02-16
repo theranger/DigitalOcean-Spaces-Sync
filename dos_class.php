@@ -74,7 +74,7 @@ class DOS {
 
   private function register_filters () {
 
-    add_filter('wp_update_attachment_metadata', array($this, 'filter_wp_update_attachment_metadata'), 20, 1);
+    add_filter('wp_generate_attachment_metadata', array($this, 'filter_wp_generate_attachment_metadata'), 20, 1);
     // add_filter('wp_save_image_editor_file', array($this,'filter_wp_save_image_editor_file'), 10, 5 );
     add_filter('wp_unique_filename', array($this, 'filter_wp_unique_filename') );
     
@@ -126,7 +126,7 @@ class DOS {
   }
 
   // FILTERS
-  public function filter_wp_update_attachment_metadata ($metadata) {
+  public function filter_wp_generate_attachment_metadata ($metadata) {
 
     $paths = array();
     $upload_dir = wp_upload_dir();
