@@ -229,7 +229,7 @@ class DOS {
 
         $path = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
 
-        if ( ! in_array($path, $paths) )
+        if ( !in_array($path, $paths) ) {
           array_push($paths, $path);
         }
 
