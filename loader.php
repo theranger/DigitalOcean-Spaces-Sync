@@ -24,7 +24,7 @@ function dos_incompatibile($msg) {
 
 if (is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX)) {
 
-	if (version_compare(PHP_VERSION, '5.3.3', '<')) {
+	if (version_compare(PHP_VERSION, '5.4', '<')) {
 
 		dos_incompatibile(
 			__(
